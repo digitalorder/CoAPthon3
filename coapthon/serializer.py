@@ -6,6 +6,7 @@ from coapthon.messages.response import Response
 from coapthon.messages.option import Option
 from coapthon import defines
 from coapthon.messages.message import Message
+import traceback
 
 __author__ = 'Giacomo Tanganelli'
 
@@ -123,9 +124,11 @@ class Serializer(object):
                     pos += len(payload)
 
             return message
-        except AttributeError:
+        except AttributeError as e:
+            print(f'Unable to parse: {e}\n{traceback.print_exc()}')
             return defines.Codes.BAD_REQUEST.number
         except struct.error:
+            print(f'Unable to unstruct: {e}\n{traceback.print_exc()}')
             return defines.Codes.BAD_REQUEST.number
 
     @staticmethod
