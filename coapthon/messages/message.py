@@ -457,6 +457,8 @@ class Message(object):
             if isinstance(e, str):
                 # if etag was accidentally set to str, convert it to bytes
                 e = bytes(e, "utf-8")
+            # let's also catch all unexpected types if they appear
+            assert isinstance(e, (type(None), bytes, bytearray))
             option.value = e
             self.add_option(option)
 
