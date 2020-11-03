@@ -28,6 +28,7 @@ class Serializer(object):
         :rtype: Message
         """
         try:
+            print('>> RCV '+ ' '.join(f'{b:02x}' for b in datagram))
             fmt = "!BBH"
             pos = struct.calcsize(fmt)
             s = struct.Struct(fmt)
