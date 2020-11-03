@@ -113,7 +113,7 @@ class Resource(object):
 
         :param etag: the ETag
         """
-        if not isinstance(etag, bytes):
+        if not isinstance(etag, bytes) and not isinstance(etag, bytearray):
             etag = bytes(etag, "utf-8")
         self._etag.append(etag)
 
